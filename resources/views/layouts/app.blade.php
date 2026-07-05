@@ -44,6 +44,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('stock-movements.index') }}">Stock</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('reports.low-stock') }}">Reports</a>
+                    </li>
                 @endauth
             </ul>
 

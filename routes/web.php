@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StockMovementController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\LowStockReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,6 +29,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/stock-movements', [StockMovementController::class, 'store'])
         ->name('stock-movements.store');
+
+    Route::get('/reports/low-stock', LowStockReportController::class)
+        ->name('reports.low-stock');
 });
 
 require __DIR__.'/auth.php';
