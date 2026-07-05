@@ -6,28 +6,28 @@
 
 <div class="row g-3 mb-4">
     <div class="col-md-3">
-        <div class="card shadow-sm">
+        <div class="card shadow-sm border-primary">
             <div class="card-body">
                 <h6 class="text-muted">Categories</h6>
-                <h2>{{ $totalCategories }}</h2>
+                <h2 class="text-primary">{{ $totalCategories }}</h2>
             </div>
         </div>
     </div>
 
     <div class="col-md-3">
-        <div class="card shadow-sm">
+        <div class="card shadow-sm border-warning">
             <div class="card-body">
                 <h6 class="text-muted">Suppliers</h6>
-                <h2>{{ $totalSuppliers }}</h2>
+                <h2 class="text-warning">{{ $totalSuppliers }}</h2>
             </div>
         </div>
     </div>
 
     <div class="col-md-3">
-        <div class="card shadow-sm">
+        <div class="card shadow-sm border-success">
             <div class="card-body">
                 <h6 class="text-muted">Products</h6>
-                <h2>{{ $totalProducts }}</h2>
+                <h2 class="text-success">{{ $totalProducts }}</h2>
             </div>
         </div>
     </div>

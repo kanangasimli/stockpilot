@@ -55,6 +55,9 @@
                 @auth
                     <li class="nav-item d-flex align-items-center text-white me-3">
                         {{ auth()->user()->name }}
+                        <span class="badge bg-secondary ms-2">
+                            {{ ucfirst(auth()->user()->role) }}
+                        </span>
                     </li>
 
                     <li class="nav-item">
