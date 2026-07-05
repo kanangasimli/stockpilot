@@ -2,29 +2,49 @@
 
 @section('content')
 
-<h1>Add Category</h1>
+<div class="card shadow-sm">
 
-<form action="{{ route('categories.store') }}" method="POST">
-    @csrf
+    <div class="card-header">
+        <h3 class="mb-0">Add Category</h3>
+    </div>
 
-    <p>
-        <label>Name</label><br>
-        <input type="text" name="name" value="{{ old('name') }}">
-        @error('name')
-            <br><small style="color:red;">{{ $message }}</small>
-        @enderror
-    </p>
+    <div class="card-body">
 
-    <p>
-        <label>Description</label><br>
-        <textarea name="description">{{ old('description') }}</textarea>
-        @error('description')
-            <br><small style="color:red;">{{ $message }}</small>
-        @enderror
-    </p>
+        <form action="{{ route('categories.store') }}" method="POST">
+            @csrf
 
-    <button type="submit" class="btn btn-success">Save</button>
-    <a href="{{ route('categories.index') }}" class="btn">Back</a>
-</form>
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+
+                <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    value="{{ old('name') }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+
+                <textarea
+                    name="description"
+                    rows="4"
+                    class="form-control">{{ old('description') }}</textarea>
+            </div>
+
+            <button class="btn btn-success">
+                Save
+            </button>
+
+            <a href="{{ route('categories.index') }}"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
 
 @endsection

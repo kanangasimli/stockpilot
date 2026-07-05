@@ -2,80 +2,160 @@
 
 @section('content')
 
-<h1>Edit Product</h1>
+<div class="card shadow-sm">
 
-<form action="{{ route('products.update', $product) }}" method="POST">
-    @csrf
-    @method('PUT')
+    <div class="card-header">
+        <h3 class="mb-0">Edit Product</h3>
+    </div>
 
-    <p>
-        <label>Category</label><br>
-        <select name="category_id">
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}" @selected(old('category_id', $product->category_id) == $category->id)>
-                    {{ $category->name }}
-                </option>
-            @endforeach
-        </select>
-        @error('category_id') <br><small style="color:red;">{{ $message }}</small> @enderror
-    </p>
+    <div class="card-body">
 
-    <p>
-        <label>Supplier</label><br>
-        <select name="supplier_id">
-            <option value="">No supplier</option>
-            @foreach($suppliers as $supplier)
-                <option value="{{ $supplier->id }}" @selected(old('supplier_id', $product->supplier_id) == $supplier->id)>
-                    {{ $supplier->name }}
-                </option>
-            @endforeach
-        </select>
-        @error('supplier_id') <br><small style="color:red;">{{ $message }}</small> @enderror
-    </p>
+        <form action="{{ route('products.update', $product) }}" method="POST">
+            @csrf
+            @method('PUT')
 
-    <p>
-        <label>Name</label><br>
-        <input type="text" name="name" value="{{ old('name', $product->name) }}">
-        @error('name') <br><small style="color:red;">{{ $message }}</small> @enderror
-    </p>
+            <div class="mb-3">
+                <label class="form-label">Category</label>
 
-    <p>
-        <label>SKU</label><br>
-        <input type="text" name="sku" value="{{ old('sku', $product->sku) }}">
-        @error('sku') <br><small style="color:red;">{{ $message }}</small> @enderror
-    </p>
+                <select name="category_id" class="form-select">
 
-    <p>
-        <label>Description</label><br>
-        <textarea name="description">{{ old('description', $product->description) }}</textarea>
-    </p>
+                    @foreach($categories as $category)
+                        <option
+                            value="{{ $category->id }}"
+                            @selected(old('category_id', $product->category_id) == $category->id)>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
 
-    <p>
-        <label>Purchase Price</label><br>
-        <input type="number" step="0.01" name="purchase_price" value="{{ old('purchase_price', $product->purchase_price) }}">
-        @error('purchase_price') <br><small style="color:red;">{{ $message }}</small> @enderror
-    </p>
+                </select>
+            </div>
 
-    <p>
-        <label>Selling Price</label><br>
-        <input type="number" step="0.01" name="selling_price" value="{{ old('selling_price', $product->selling_price) }}">
-        @error('selling_price') <br><small style="color:red;">{{ $message }}</small> @enderror
-    </p>
+            <div class="mb-3">
+                <label class="form-label">Supplier</label>
 
-    <p>
-        <label>Quantity</label><br>
-        <input type="number" name="quantity" value="{{ old('quantity', $product->quantity) }}">
-        @error('quantity') <br><small style="color:red;">{{ $message }}</small> @enderror
-    </p>
+                <select name="supplier_id" class="form-select">
 
-    <p>
-        <label>Minimum Quantity</label><br>
-        <input type="number" name="minimum_quantity" value="{{ old('minimum_quantity', $product->minimum_quantity) }}">
-        @error('minimum_quantity') <br><small style="color:red;">{{ $message }}</small> @enderror
-    </p>
+                    <option value="">No supplier</option>
 
-    <button type="submit" class="btn btn-success">Update</button>
-    <a href="{{ route('products.index') }}" class="btn">Back</a>
-</form>
+                    @foreach($suppliers as $supplier)
+                        <option
+                            value="{{ $supplier->id }}"
+                            @selected(old('supplier_id', $product->supplier_id) == $supplier->id)>
+                            {{ $supplier->name }}
+                        </option>
+                    @endforeach
+
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Product Name</label>
+
+                <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    value="{{ old('name', $product->name) }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">SKU</label>
+
+                <input
+                    type="text"
+                    name="sku"
+                    class="form-control"
+                    value="{{ old('sku', $product->sku) }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+
+                <textarea
+                    name="description"
+                    rows="4"
+                    class="form-control">{{ old('description', $product->description) }}</textarea>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="mb-3">
+                        <label class="form-label">Purchase Price</label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            name="purchase_price"
+                            class="form-control"
+                            value="{{ old('purchase_price', $product->purchase_price) }}">
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="mb-3">
+                        <label class="form-label">Selling Price</label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            name="selling_price"
+                            class="form-control"
+                            value="{{ old('selling_price', $product->selling_price) }}">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="mb-3">
+                        <label class="form-label">Quantity</label>
+
+                        <input
+                            type="number"
+                            name="quantity"
+                            class="form-control"
+                            value="{{ old('quantity', $product->quantity) }}">
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="mb-3">
+                        <label class="form-label">Minimum Quantity</label>
+
+                        <input
+                            type="number"
+                            name="minimum_quantity"
+                            class="form-control"
+                            value="{{ old('minimum_quantity', $product->minimum_quantity) }}">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="btn btn-success">
+                Update
+            </button>
+
+            <a href="{{ route('products.index') }}"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
 
 @endsection

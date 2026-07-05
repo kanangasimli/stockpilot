@@ -2,37 +2,44 @@
 
 @section('content')
 
-<h1>Add Supplier</h1>
+<div class="card shadow-sm">
 
-<form action="{{ route('suppliers.store') }}" method="POST">
-    @csrf
+    <div class="card-header">
+        <h3 class="mb-0">Add Supplier</h3>
+    </div>
 
-    <p>
-        <label>Name</label><br>
-        <input type="text" name="name" value="{{ old('name') }}">
-        @error('name') <br><small style="color:red;">{{ $message }}</small> @enderror
-    </p>
+    <div class="card-body">
 
-    <p>
-        <label>Email</label><br>
-        <input type="email" name="email" value="{{ old('email') }}">
-        @error('email') <br><small style="color:red;">{{ $message }}</small> @enderror
-    </p>
+        <form action="{{ route('suppliers.store') }}" method="POST">
+            @csrf
 
-    <p>
-        <label>Phone</label><br>
-        <input type="text" name="phone" value="{{ old('phone') }}">
-        @error('phone') <br><small style="color:red;">{{ $message }}</small> @enderror
-    </p>
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" name="name" class="form-control" value="{{ old('name') }}">
+            </div>
 
-    <p>
-        <label>Address</label><br>
-        <textarea name="address">{{ old('address') }}</textarea>
-        @error('address') <br><small style="color:red;">{{ $message }}</small> @enderror
-    </p>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+            </div>
 
-    <button type="submit" class="btn btn-success">Save</button>
-    <a href="{{ route('suppliers.index') }}" class="btn">Back</a>
-</form>
+            <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input type="text" name="phone" class="form-control" value="{{ old('phone') }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Address</label>
+                <textarea name="address" rows="4" class="form-control">{{ old('address') }}</textarea>
+            </div>
+
+            <button class="btn btn-success">Save</button>
+            <a href="{{ route('suppliers.index') }}" class="btn btn-secondary">Back</a>
+
+        </form>
+
+    </div>
+
+</div>
 
 @endsection

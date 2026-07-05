@@ -2,17 +2,18 @@
 
 @section('content')
 
-<h1>Suppliers</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="mb-0">Suppliers</h1>
 
-<a href="{{ route('suppliers.create') }}" class="btn">Add Supplier</a>
-
-@if(session('success'))
-    <p style="color: green;">{{ session('success') }}</p>
-@endif
+    <a href="{{ route('suppliers.create') }}"
+       class="btn btn-primary">
+        Add Supplier
+    </a>
+</div>
 
 <br><br>
 
-<table>
+<table class="table table-bordered table-hover align-middle bg-white">
     <thead>
         <tr>
             <th>#</th>
@@ -30,13 +31,13 @@
                 <td>{{ $supplier->email ?? '-' }}</td>
                 <td>{{ $supplier->phone ?? '-' }}</td>
                 <td>
-                    <a href="{{ route('suppliers.edit', $supplier) }}" class="btn">Edit</a>
+                    <a href="{{ route('suppliers.edit', $supplier) }}" class="btn btn-warning btn-sm">Edit</a>
 
                     <form action="{{ route('suppliers.destroy', $supplier) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
                             Delete
                         </button>
                     </form>

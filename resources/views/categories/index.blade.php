@@ -2,17 +2,18 @@
 
 @section('content')
 
-<h1>Categories</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="mb-0">Categories</h1>
 
-<a href="{{ route('categories.create') }}" class="btn">Add Category</a>
-
-@if(session('success'))
-    <p style="color: green;">{{ session('success') }}</p>
-@endif
+    <a href="{{ route('categories.create') }}"
+       class="btn btn-primary">
+        Add Category
+    </a>
+</div>
 
 <br><br>
 
-<table>
+<table class="table table-bordered table-hover bg-white">
     <thead>
         <tr>
             <th>#</th>
@@ -29,7 +30,10 @@
                 <td>{{ $category->name }}</td>
                 <td>{{ $category->description ?? '-' }}</td>
                 <td>
-                    <a href="{{ route('categories.edit', $category) }}" class="btn">Edit</a>
+                    <a href="{{ route('categories.edit', $category) }}"
+                        class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
 
                     <form action="{{ route('categories.destroy', $category) }}"
                           method="POST"
@@ -38,8 +42,8 @@
                         @method('DELETE')
 
                         <button type="submit"
-                                class="btn btn-danger"
-                                onclick="return confirm('Are you sure?')">
+                            class="btn btn-danger btn-sm"
+                            onclick="return confirm('Are you sure?')">
                             Delete
                         </button>
                     </form>

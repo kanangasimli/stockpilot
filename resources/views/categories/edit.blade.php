@@ -2,30 +2,50 @@
 
 @section('content')
 
-<h1>Edit Category</h1>
+<div class="card shadow-sm">
 
-<form action="{{ route('categories.update', $category) }}" method="POST">
-    @csrf
-    @method('PUT')
+    <div class="card-header">
+        <h3 class="mb-0">Edit Category</h3>
+    </div>
 
-    <p>
-        <label>Name</label><br>
-        <input type="text" name="name" value="{{ old('name', $category->name) }}">
-        @error('name')
-            <br><small style="color:red;">{{ $message }}</small>
-        @enderror
-    </p>
+    <div class="card-body">
 
-    <p>
-        <label>Description</label><br>
-        <textarea name="description">{{ old('description', $category->description) }}</textarea>
-        @error('description')
-            <br><small style="color:red;">{{ $message }}</small>
-        @enderror
-    </p>
+        <form action="{{ route('categories.update', $category) }}" method="POST">
+            @csrf
+            @method('PUT')
 
-    <button type="submit" class="btn btn-success">Update</button>
-    <a href="{{ route('categories.index') }}" class="btn">Back</a>
-</form>
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+
+                <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    value="{{ old('name', $category->name) }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+
+                <textarea
+                    name="description"
+                    rows="4"
+                    class="form-control">{{ old('description', $category->description) }}</textarea>
+            </div>
+
+            <button class="btn btn-success">
+                Update
+            </button>
+
+            <a href="{{ route('categories.index') }}"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
 
 @endsection
