@@ -5,9 +5,11 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h1 class="mb-0">Low Stock Report</h1>
 
-    <a href="{{ route('products.index') }}" class="btn btn-secondary">
-        Back to Products
-    </a>
+    @if(auth()->user()->isAdmin())
+        <a href="{{ route('products.index') }}" class="btn btn-secondary">
+            Back to Products
+        </a>
+    @endif
 </div>
 
 <table class="table table-striped table-bordered align-middle bg-white">
