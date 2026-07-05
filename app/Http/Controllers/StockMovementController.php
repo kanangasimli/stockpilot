@@ -2,63 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StockMovementRequest;
+use App\Models\Product;
+use App\Models\StockMovement;
+use App\Services\StockMovementService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+use InvalidArgumentException;
 
 class StockMovementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): View
     {
-        //
+        $stockMovements = StockMovement::with(['product', 'user'])
+            ->latest()
+            ->paginate(10);
+
+        return view('stock-movements.index', compact('stockMovements'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): View
     {
-        //
+        $products = Product::orderBy('name')->get();
+
+        return view('stock-movements.create', compact('products'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(
+        StockMovementRequest $request,
+        StockMovementService $stockMovementService
+    ): RedirectResponse {
+        try {
+            $stockMovementService->create([
+                ...$request->validated(),
+                'user_id' => $request->user()->id,
+                'movement_date' => now(),
+            ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+            return redirect()
+                ->route('stock-movements.index')
+                ->with('success', 'Stock movement created successfully.');
+        } catch (InvalidArgumentException $exception) {
+            return back()
+                ->withInput()
+                ->withErrors(['quantity' => $exception->getMessage()]);
+        }
     }
 }
