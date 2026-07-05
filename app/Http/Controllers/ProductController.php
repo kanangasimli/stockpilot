@@ -13,11 +13,24 @@ class ProductController extends Controller
 {
     public function index(): View
     {
-        $products = Product::with(['category', 'supplier'])
-            ->latest()
-            ->paginate(10);
+        $search = request('search');
 
-        return view('products.index', compact('products'));
+        $products = Product::with(['category', 'supplier'])
+            ->when($search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                        ->orWhere('sku', 'like', "%{$search}%");
+                });
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        if (request()->ajax()) {
+            return view('products._table', compact('products'));
+        }
+
+        return view('products.index', compact('products', 'search'));
     }
 
     public function create(): View
