@@ -1,36 +1,93 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockPilot</title>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <style>
+        body{
+            margin:0;
+            font-family:Arial, Helvetica, sans-serif;
+            background:#f4f6f9;
+        }
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+        nav{
+            background:#1f2937;
+            padding:15px 30px;
+        }
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin-right:20px;
+            font-weight:bold;
+        }
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
+        .container{
+            width:90%;
+            margin:30px auto;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+        }
+
+        table th,
+        table td{
+            border:1px solid #ddd;
+            padding:10px;
+        }
+
+        table th{
+            background:#eee;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:8px 14px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+        .btn-danger{
+            background:#dc2626;
+        }
+
+        .btn-success{
+            background:#16a34a;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+
+    <a href="{{ route('dashboard') }}">Dashboard</a>
+
+    <a href="{{ route('categories.index') }}">Categories</a>
+
+    <a href="{{ route('suppliers.index') }}">Suppliers</a>
+
+    <a href="{{ route('products.index') }}">Products</a>
+
+    <a href="{{ route('stock-movements.index') }}">Stock</a>
+
+</nav>
+
+<div class="container">
+
+    @yield('content')
+
+</div>
+
+</body>
 </html>
