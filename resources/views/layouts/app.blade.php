@@ -27,17 +27,19 @@
                         <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
-                    </li>
+                    @if(auth()->user()->isAdmin())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('suppliers.index') }}">Suppliers</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('suppliers.index') }}">Suppliers</a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products.index') }}">Products</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('products.index') }}">Products</a>
+                        </li>
+                    @endif
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('stock-movements.index') }}">Stock</a>
