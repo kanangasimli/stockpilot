@@ -16,12 +16,12 @@ return new class extends Migration
 
             $table->foreignId('category_id')
                 ->constrained()
-                ->cascadeOnDelete();
+                ->restrictOnDelete();
 
             $table->foreignId('supplier_id')
                 ->nullable()
                 ->constrained()
-                ->nullOnDelete();
+                ->restrictOnDelete();
 
             $table->string('name');
             $table->string('sku')->unique();

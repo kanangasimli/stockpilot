@@ -46,6 +46,14 @@ class CategoryController extends Controller
 
     public function destroy(Category $category): RedirectResponse
     {
+        if ($category->products()->exists()) {
+            return redirect()
+                ->route('categories.index')
+                ->withErrors([
+                    'category' => 'Cannot delete category because it is assigned to one or more products.',
+                ]);
+        }
+
         $category->delete();
 
         return redirect()
