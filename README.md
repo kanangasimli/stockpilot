@@ -163,31 +163,31 @@ Every newly registered user is automatically assigned the **Staff** role.
 
 ### Login
 
-_Add screenshot here_
+![Login](screenshots/login.png)
 
 ### Dashboard
 
-_Add screenshot here_
+![Dashboard](screenshots/dashboard.png)
 
 ### Categories
 
-_Add screenshot here_
+![Categories](screenshots/categories.png)
 
 ### Suppliers
 
-_Add screenshot here_
+![Suppliers](screenshots/suppliers.png)
 
 ### Products
 
-_Add screenshot here_
+![Products](screenshots/products.png)
 
 ### Stock Movements
 
-_Add screenshot here_
+![Stock Movements](screenshots/stock-movements.png)
 
 ### Low Stock Report
 
-_Add screenshot here_
+![Low Stock Report](screenshots/low-stock-report.png)
 
 ---
 
